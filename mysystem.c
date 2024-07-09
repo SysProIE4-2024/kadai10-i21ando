@@ -33,6 +33,8 @@ int mysystem(char *command) {
 /* 実行例
 
 ここに実行例を書く
+% make
+cc -Wall -std=c99 -o mysysmain mysysmain.c  mysystem.c
 % ls -l       
 total 616
 -rw-r--r--  1 andotakuma  staff     143  7  4 09:44 Makefile
@@ -42,10 +44,8 @@ total 616
 -rw-r--r--  1 andotakuma  staff     925  7  4 09:44 mysysmain.c
 -rw-r--r--  1 andotakuma  staff    1755  7  4 10:20 mysystem.c
 -rw-r--r--  1 andotakuma  staff      90  7  4 09:44 mysystem.h
-
 % ./mysysmain 
 使い方 : ./mysysmain コマンド文字列
-
 % ./mysysmain "ls -l"
 mysystem:
 total 616
@@ -67,5 +67,19 @@ total 616
 -rw-r--r--  1 andotakuma  staff     721  7  4 10:16 mysystem.c
 -rw-r--r--  1 andotakuma  staff      90  7  4 09:44 mysystem.h
 retval = 00000000
+% ./mysysmain "aaa"
+mysystem:
+sh: aaa: command not found
+retval = 00007f00
+system:
+sh: aaa: command not found
+retval = 00007f00
+% ./mysysmain "ls -l a.txt"
+mysystem:
+ls: a.txt: No such file or directory
+retval = 00000100
+system:
+ls: a.txt: No such file or directory
+retval = 00000100
 
 */
